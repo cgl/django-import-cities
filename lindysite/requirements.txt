@@ -1,3 +1,5 @@
 nltk==3.2
 Django
 python-dateutil
+Pillow
+tqdm

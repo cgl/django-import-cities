@@ -1,9 +1,6 @@
 import os,io,zipfile
 from urllib.request import urlopen
 
-#Download Stanford Named Entity Recognizer version 3.6.0
-stanford_ner_zip_url="http://nlp.stanford.edu/software/stanford-ner-2015-12-09.zip"
-
 def download(url,data_dir,filename):
 #    try:
     filepath = os.path.join(data_dir, filename)
@@ -27,4 +24,10 @@ def download(url,data_dir,filename):
 
     #file_obj = io.open(os.path.join(data_dir, filename), 'r', encoding='utf-8')
 
-download(stanford_ner_zip_url,".","stanford-ner-2015-12-09.zip")
+if __name__=="__main__":
+    download(stanford_ner_zip_url,".","stanford-ner-2015-12-09.zip")
+    #Download Stanford Named Entity Recognizer version 3.6.0
+    stanford_ner_zip_url="http://nlp.stanford.edu/software/stanford-ner-2015-12-09.zip"
+    base_url="http://godel.cmpe.boun.edu.tr/Public/python-talk/"
+    filename="stanford-ner-2015-12-09.zip"
+    stanford_ner_zip_url=base_url+filename
