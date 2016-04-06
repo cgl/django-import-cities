@@ -12,7 +12,7 @@ def download(url,data_dir,filename):
                 raise Exception()
         except urllib.error.HTTPError:
             print("HTTP Error 404: Not Found %s" %url)
-            #web_file = None
+            return
         if web_file is not None:
             if not os.path.exists(data_dir):
                 os.makedirs(data_dir)

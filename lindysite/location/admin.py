@@ -9,5 +9,5 @@ class CountryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ['name']
 
-admin.site.register(City, CityAdmin)
-admin.site.register(Country, CountryAdmin)
+#admin.site.register(City, CityAdmin)
+#admin.site.register(Country, CountryAdmin)
