@@ -1,0 +1,35 @@
+{% extends 'plus/base.html' %}
+
+{% load staticfiles %}
+{% load plus_extras %}
+
+{% block head %}
+<title><The Title</title>
+{% endblock %}
+
+
+{% block content %}
+
+       <section>
+         <h3>About us</h3>
+         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec molestie. Sed aliquam sem ut arcu. Phasellus sollicitudin.
+         Vestibulum condimentum  facilisis nulla. In hac habitasse platea dictumst. Nulla nonummy.</p>
+         <a class="photo_hover3" href="#"><img src="images/picture1.jpg" width="240" height="214" alt="picture1"/></a>
+         <a href="#"><span class="button">Read more</span></a>
+       </section>
+
+      <section class="group2">
+         <h3>Services</h3>
+         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec molestie. Sed aliquam sem ut arcu. Phasellus sollicitudin.
+         Vestibulum condimentum  facilisis nulla. In hac habitasse platea dictumst. Nulla nonummy.</p>
+         <a class="photo_hover3" href="#"><img src="images/picture2.jpg" width="240" height="214" alt="picture1"/></a>
+         <a href="#"><span class="button">Read more</span></a>
+       </section>
+      <section class="group3">
+         <h3>Latest news</h3>
+         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec molestie. Sed aliquam sem ut arcu. Phasellus sollicitudin.
+         Vestibulum condimentum facilisis nulla. In hac habitasse platea dictumst. Nulla nonummy.   </p>
+         <a class="photo_hover3" href="#"><img src="images/picture3.jpg" width="240" height="214" alt="picture1"/></a>
+         <a href="#"><span class="button">Read more</span></a>
+
+         {% endblock %}

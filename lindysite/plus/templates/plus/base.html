@@ -1,0 +1,42 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+{% block head %}
+<title>Events</title>
+{% endblock %}
+ <!--[if lt IE 9]>
+ <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+   <div class="bg">
+    <!--start container-->
+    <div id="container">
+    <!--start header-->
+    <header>
+      <!--start menu-->
+  	   <nav>
+         <ul>
+         <li><a href="#" class="current">Events</a></li>
+         <li><a href="#">Locations</a></li>
+         </ul>
+      </nav>
+  	   <!--end menu-->
+      <!--end header-->
+	</header>
+   <div class="holder_content">
+     {% block content %}
+     {% endblock %}
+
+     <footer>
+        <div class="container">
+           <div id="FooterTwo"> © 2016 A&C </div>
+        </div>
+     </footer>
+   </div>
+  </body>
+</html>
