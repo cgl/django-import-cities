@@ -1,5 +1,5 @@
 city_types = ['PPL', 'PPLA', 'PPLC', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLG']
-baseurl="http://download.geonames.org/export/dump"
+baseurl="http://download.geonames.org/export/dump/"
 files = {
     'country': {
         'filename': 'countryInfo.txt',
@@ -27,6 +27,7 @@ files = {
     },
     'city': {
         'filename': 'cities5000.txt',
+        'zipfilename': 'cities5000.zip',
         'fields': [
             'geonameid',
             'name',

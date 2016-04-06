@@ -12,6 +12,7 @@ def download(url,data_dir,filename):
                 raise Exception()
         except urllib.error.HTTPError:
             print("HTTP Error 404: Not Found %s" %url)
+            return False
             #web_file = None
         if web_file is not None:
             if not os.path.exists(data_dir):
@@ -19,13 +20,10 @@ def download(url,data_dir,filename):
             file = io.open(os.path.join(data_dir, filename), 'wb')
             file.write(web_file.read())
             file.close()
-
     name, ext = filename.rsplit('.', 1)
     if (ext == 'zip'):
         zipfile.ZipFile(os.path.join(data_dir, filename)).extractall(data_dir)
-
-
-    #file_obj = io.open(os.path.join(data_dir, filename), 'r', encoding='utf-8')
+    return True
 
 if __name__=="__main__":
     #Download Stanford Named Entity Recognizer version 3.6.0
