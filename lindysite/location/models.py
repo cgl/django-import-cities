@@ -25,7 +25,7 @@ class Country(BaseModel):
 
 
 class City(BaseModel):
-    country = models.ForeignKey(Country)
+    country = models.ForeignKey(Country, on_delete=models.deletion.CASCADE)
     name = models.CharField(max_length=64, verbose_name = u'City name',unique=True)
     slug = models.SlugField()
     timezone = models.CharField(max_length=40)
@@ -53,8 +53,8 @@ class City(BaseModel):
 
 
 class FollowsCity(models.Model):
-    user = models.ForeignKey(User)
-    city = models.ForeignKey(City)
+    user = models.ForeignKey(User, on_delete=models.deletion.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.deletion.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         unique_together = (("user", "city"),)

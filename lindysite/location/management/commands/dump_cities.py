@@ -19,6 +19,8 @@ class Command(BaseCommand):
         parser.add_argument('--cities', action='store_true',default=False,help='./manage.py fetch_cities --cities')
 
     def handle(self, *args, **options):
+        if not (options['countries'] and options["cities"]):
+            raise CommandError("Please either input a country or city name")
         if options['countries']:
             filename = files['country']['filename']
             fields = files['country']['fields']

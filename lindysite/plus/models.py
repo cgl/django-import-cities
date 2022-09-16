@@ -22,7 +22,7 @@ class BaseModel(models.Model):
 class Person(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    city = models.ForeignKey(City)
+    city = models.ForeignKey(City, on_delete=models.deletion.CASCADE)
     image = models.ImageField(null=True, blank=True, verbose_name="person_image")
     slug = models.SlugField(unique=True)
     date_of_birth = models.DateField(null=True, blank=True)
@@ -35,7 +35,7 @@ class Person(models.Model):
     sex = models.CharField(max_length=2,choices=SEX_TYPE_CHOICES,default="F")
     email = models.EmailField(max_length=30,unique=True)
     mobile_phone = models.CharField(max_length=30)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.deletion.CASCADE)
 
     def __str__(self):
         return "%s %s" %(self.first_name,self.last_name)
@@ -44,7 +44,7 @@ class Person(models.Model):
         return "%s %s" %(self.person.first_name,self.person.last_name)
 
 class Teacher(models.Model):
-    person = models.OneToOneField(Person,related_name="teacher_prsn")
+    person = models.OneToOneField(Person,related_name="teacher_prsn", on_delete=models.deletion.CASCADE)
     TEACHER_TYPE_CHOICES = (
         ('Loc', 'Local'),
         ('Int', 'International'),
@@ -52,7 +52,7 @@ class Teacher(models.Model):
 
     type = models.CharField(max_length=3,choices=TEACHER_TYPE_CHOICES,default="Int")
     image = models.ImageField(null=True, blank=True, verbose_name="teacher_image")
-    present_city = models.ForeignKey(City,related_name="teacher_present_city")
+    present_city = models.ForeignKey(City,related_name="teacher_present_city", on_delete=models.deletion.CASCADE)
 
     first_speciality = models.CharField(max_length=2,choices=DANCE_TYPE_CHOICES,default="LH")
     second_speciality = models.CharField(max_length=2,choices=DANCE_TYPE_CHOICES, blank=True)
@@ -105,7 +105,7 @@ class Event(BaseModel):
         ('We', 'Weekend'),
     )
     type = models.CharField(max_length=2,choices=EVENT_TYPE_CHOICES,default="Ws")
-    city = models.ForeignKey(City)
+    city = models.ForeignKey(City, on_delete=models.deletion.CASCADE)
     website = models.URLField(null=True,blank=True)
     fb_page = models.URLField(null=True,blank=True)
     fb_event = models.URLField(null=True,blank=True)
@@ -114,9 +114,9 @@ class Event(BaseModel):
 
     teachers = models.ManyToManyField(Teacher,blank=True,through='TeachesInEvent')
 
-    organizer1 = models.ForeignKey(Person, related_name="event_organizer1")
-    organizer2 = models.ForeignKey(Person, related_name="event_organizer2",null=True, blank=True)
-    organizer3 = models.ForeignKey(Person, related_name="event_organizer3",null=True, blank=True)
+    organizer1 = models.ForeignKey(Person, related_name="event_organizer1", on_delete=models.deletion.CASCADE)
+    organizer2 = models.ForeignKey(Person, related_name="event_organizer2",null=True, blank=True, on_delete=models.deletion.CASCADE)
+    organizer3 = models.ForeignKey(Person, related_name="event_organizer3",null=True, blank=True, on_delete=models.deletion.CASCADE)
     company = models.CharField(max_length=100,blank=True)
 
     #bands = models.ManyToManyField(Band,blank=True, related_name="bands")
@@ -151,29 +151,29 @@ class Event(BaseModel):
         return reverse('plus.views.core.event_details', args=[str(self.id)])
 
 class LikesTeacher(models.Model):
-    user = models.ForeignKey(User)
-    teacher = models.ForeignKey(Teacher)
+    user = models.ForeignKey(User, on_delete=models.deletion.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.deletion.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         unique_together = (("user", "teacher"),)
 
 class FollowsTeacher(models.Model):
-    user = models.ForeignKey(User)
-    teacher = models.ForeignKey(Teacher)
+    user = models.ForeignKey(User, on_delete=models.deletion.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.deletion.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         unique_together = (("user", "teacher"),)
 
 class LikesEvent(models.Model):
-    user = models.ForeignKey(User)
-    event = models.ForeignKey(Event)
+    user = models.ForeignKey(User, on_delete=models.deletion.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.deletion.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         unique_together = (("user", "event"),)
 
 class FollowsEvent(models.Model):
-    user = models.ForeignKey(User)
-    event = models.ForeignKey(Event)
+    user = models.ForeignKey(User, on_delete=models.deletion.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.deletion.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         unique_together = (("user", "event"),)
@@ -187,8 +187,8 @@ class DanceType(models.Model):
         return self.dancetype
 
 class TeachesInEvent(models.Model):
-    teacher = models.ForeignKey(Teacher)
-    event = models.ForeignKey(Event)
+    teacher = models.ForeignKey(Teacher, on_delete=models.deletion.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.deletion.CASCADE)
     dance_type = models.ManyToManyField(DanceType,blank=True)
     def __str__(self):
         return "%s %s %s" %(self.teacher,self.event,self.dance_type)

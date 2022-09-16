@@ -1,5 +1,5 @@
 nltk==3.2
-Django
-python-dateutil
-Pillow
-tqdm
+Django==3
+python-dateutil==2.8.2
+Pillow==9.2.0
+tqdm==4.64.1
