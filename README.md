@@ -15,7 +15,7 @@ Database:
     ./manage.py migrate location
     ./manage.py migrate plus
     ./manage.py createsuperuser
-    
+
 Management commands:
 
     ./manage.py download_data_completed --download
@@ -23,6 +23,12 @@ Management commands:
     ./manage.py dump_cities --countries
     ./manage.py dump_cities --cities
     ./manage.py loaddata sample_data.json
+
+Tests:
+
+In order to run the tests:
+
+    $ pytest
 
 
 NER:
